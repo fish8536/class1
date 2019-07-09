@@ -38,7 +38,7 @@ class EmployeesController extends Controller
     {
         $_oEmpModel->firstName = $_oRequest->firstName;
         $_oEmpModel->lastName = $_oRequest->lastName;
-        $_oEmpModel->lastName = $_oRequest->email;
+        $_oEmpModel->email = $_oRequest->email;
         $_oEmpModel->save();
         return redirect("/employees");
     }
@@ -46,24 +46,24 @@ class EmployeesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $_iId
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $_oEmpModel, $id)
+    public function show(Employee $_oEmpModel, $_iId)
     {
-        $emp = $_oEmpModel->find($id);
+        $emp = $_oEmpModel->find($_iId);
         return view('employees.show', ['emp' => $emp]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $_iId
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $_oEmpModel, $id)
+    public function edit(Employee $_oEmpModel, $_iId)
     {
-        $emp = $_oEmpModel->find($id);
+        $emp = $_oEmpModel->find($_iId);
         return view('employees.edit', ['emp' => $emp]);
     }
 
@@ -71,12 +71,12 @@ class EmployeesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $_oRequest
-     * @param  int  $id
+     * @param  int  $_iId
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $_oRequest, $id)
+    public function update(Request $_oRequest, $_iId)
     {
-        $emp = Employee::find($id);
+        $emp = Employee::find($_iId);
         $emp->firstName = $_oRequest->firstName;
         $emp->lastName = $_oRequest->lastName;
         $emp->email = $_oRequest->email;
@@ -87,12 +87,12 @@ class EmployeesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $_iId
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($_iId)
     {
-        $emp = Employee::find($id);
+        $emp = Employee::find($_iId);
         $emp->delete();
         return redirect("/employees");
     }
