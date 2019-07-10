@@ -1,48 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-        <form method="post" action="/employees" class="form-horizontal">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+        <form method="post" action="/news" class="form-horizontal">
             @csrf
             <fieldset>
 
                 <!-- Form Name -->
-                <legend>Emplyee Data</legend>
+                <legend>News</legend>
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="firstName">First Name:</label>
-                    <div class="col-md-4">
-                        <input id="firstName" name="firstName" type="text" placeholder="" class="form-control input-md">
+                    <label class="control-label" for="title">News Title:</label>
+                    <div class="">
+                        <input id="title" name="title" type="text" placeholder="" class="form-control input-md">
 
                     </div>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="lastName">Last Name:</label>
-                    <div class="col-md-4">
-                        <input id="lastName" name="lastName" type="text" placeholder="" class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="email">email:</label>
-                    <div class="col-md-4">
-                        <input id="email" name="email" value="" type="email" placeholder="" class="form-control input-md">
+                    <label class="control-label" for="content">News Content:</label>
+                    <div class="">
+                        <textarea id="content" name="content" type="text" placeholder="" class="form-control input-md">
+                        </textarea>
 
                     </div>
                 </div>
 
                 <!-- Button (Double) -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="okOrCancel"></label>
+                    <label class="control-label" for="okOrCancel"></label>
                     <div class="col-md-8">
                         <button type="submit" id="okOrCancel" name="okOrCancel" class="btn btn-success">OK</button>
-                        <a href="/employees" id="okOrCancel" name="okOrCancel" class="btn btn-danger">Cancel</a>
+                        <a href="/" id="okOrCancel" name="okOrCancel" class="btn btn-danger">Cancel</a>
                     </div>
                 </div>
 
             </fieldset>
         </form>
+        </div>
+    </div>
+</div>
 @endsection

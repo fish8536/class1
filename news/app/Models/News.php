@@ -11,6 +11,6 @@ class News extends Model
 
     function users()
     {
-        return $this->hasOne(User::class, 'userId');
+        return $this->hasOne(User::class, 'id');
     }
 }

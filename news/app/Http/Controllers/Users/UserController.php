@@ -25,7 +25,7 @@ class UserController extends Controller
         $password = $_oRequest->password;
         $user = $_oUser->where('email', $email)->first();
         if (empty($user->id) || !Hash::check($password, $user->password)) {
-            return redirect('/login');
+            return redirect('/login', ['message' => 'No this user or wrong password!!']);
         }
         $_oRequest->session()->put('userid', $user->id);
         $_oRequest->session()->put('userName', $user->name);

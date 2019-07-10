@@ -35,9 +35,16 @@ class MainController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $_oRequest, News $_oNews)
     {
-        //
+        if (empty($_oRequest->session()->get('userid'))) {
+            return view('auth.login', ['message' => 'You have to login first!']);
+        }
+        $_oNews->userId = $_oRequest->session()->get('userid');
+        $_oNews->title = $_oRequest->title;
+        $_oNews->content = $_oRequest->content;
+        $_oNews->save();
+        return redirect('/');
     }
 
     /**
