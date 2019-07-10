@@ -17,9 +17,9 @@
       <tr>
           <td>{{$news->title}}</td>
           <td>{{$news->users->name}}</td>
-          <td>{{$news->create_at}}</td>
+          <td>{{$news->updated_at}}</td>
           <td>
-              @if (empty(Request::session()->get('userid')))
+              @if (!empty(Request::session()->get('userid')))
               <span class="pull-right">
                     <form method="post" action="/news/{{$news->id}}">
                         <a href="/news/{{$news->id}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-eye-open"></span> 檢視</a> |

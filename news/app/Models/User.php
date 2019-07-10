@@ -11,6 +11,6 @@ class User extends Model
 
     function news()
     {
-        return $this->hasMany(News::class);
+        return $this->hasMany(News::class, null, 'id');
     }
 }

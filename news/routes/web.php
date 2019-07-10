@@ -13,6 +13,8 @@
 
 Route::get('/', "News\MainController@index");
 Route::get('/login', "Users\UserController@index");
+Route::get('/register', "Users\UserController@create");
 Route::post('/login', "Users\UserController@postLogin");
 Route::post('/logout', "Users\UserController@postLogout");
+Route::post('/register', "Users\UserController@store");
 Route::resource('news', 'News\MainController');

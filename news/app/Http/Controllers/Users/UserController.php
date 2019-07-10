@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('auth.login');
+        return view('news.login');
     }
 
     public function postLogin(Request $_oRequest, User $_oUser)
@@ -25,11 +25,11 @@ class UserController extends Controller
         $password = $_oRequest->password;
         $user = $_oUser->where('email', $email)->first();
         if (empty($user->id) || !Hash::check($password, $user->password)) {
-            return redirect('/login', ['message' => 'No this user or wrong password!!']);
+            return redirect()->back()->withErrors('No this user or wrong password!!');
         }
         $_oRequest->session()->put('userid', $user->id);
         $_oRequest->session()->put('userName', $user->name);
-        return redirect('/');
+        return redirect()->back();
     }
 
     public function postLogout(Request $_oRequest)
@@ -50,18 +50,25 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('news.register');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $_oRequest
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $_oRequest, User $_oUser)
     {
-        //
+        if (!empty($_oUser->where('email', $_oRequest->email)->get()->first()) || $_oRequest->password !== $_oRequest->password_confirmation) {
+            return redirect()->back()->withErrors('Already have this user or wrong password!!');
+        }
+        $_oUser->name = $_oRequest->name;
+        $_oUser->email = $_oRequest->email;
+        $_oUser->password = Hash::make($_oRequest->password);
+        $_oUser->save();
+        return redirect('/login');
     }
 
     /**
