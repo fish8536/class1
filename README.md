@@ -12,3 +12,4 @@
 3. view.yj.localhost
 4. blog.yj.localhost
 5. existed.yj.localhost
+6. news.yj.localhost
